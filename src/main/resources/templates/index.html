@@ -29,11 +29,17 @@
         <a class="nav-link" href="addemp">Add Emp</a>
       </li>
       
-    </ul>
   </div>
 </nav>
 
 <!-- Navbar -->
+
+
+<div th:if=${session.msg}>
+	<div class="alert alert-success" role="alert" th:text="${session.msg}">
+	</div>
+	<th:block th:text="${#session.removeAttribute('msg')}"></th:block>
+</div>
 
 <div class="container p-5">
 	<table class="table table-striped">
@@ -45,36 +51,21 @@
       <th scope="col">Email</th>
       <th scope="col">Phone No</th>
       <th scope="col">Salary</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>101</td>
-      <td>Kritika</td>
-      <td>Tuuhad djsd</td>
-      <td>ttsd@kfdfj</td>
-      <td>30000434454</td>
-      <td>30005</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>102</td>
-      <td>Rishav</td>
-      <td>AJhad djsd</td>
-      <td>abcsd@kfdfj</td>
-      <td>2435434454</td>
-      <td>434455</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>103</td>
-      <td>Mohan</td>
-      <td>AJhad djsd</td>
-      <td>abcsd@kfdfj</td>
-      <td>2435434454</td>
-      <td>20455</td>
-    </tr>
+    <tr th:each="e: ${emp}">
+      <th th:text="${e.id}">1</th>
+      <td th:text="${e.name}"></td>
+      <td th:text="${e.address}"></td>
+      <td th:text="${e.email}"></td>
+      <td th:text="${e.phone}"></td>
+      <td th:text="${e.salary}"></td>
+      <td>
+      <a class="btn btn-sm btn-primary">Edit</a>
+      <a class="btn btn-sm btn-danger">Delete</a>
+      </td>
   </tbody>
 </table>
 
