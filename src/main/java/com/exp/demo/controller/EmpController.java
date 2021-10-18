@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.exp.demo.entity.Employee;
@@ -39,6 +40,22 @@ public class EmpController {
 		
 		service.addEmp(e);
 		session.setAttribute("msg","Employee Added Successfully...");
+		return "redirect:/";
+	}
+	
+	@GetMapping("/edit/{id}")
+	public String edit(@PathVariable int id, Model m) {
+		
+		Employee e=service.getEmpById(id);
+		m.addAttribute("emp",e);
+		return "edit";
+	}
+	
+	@PostMapping("/update")
+	public String updateEmp(@ModelAttribute Employee e, HttpSession session) {
+		
+		service.addEmp(e);
+		session.setAttribute("msg", "Emp Data Update Successfully...");
 		return "redirect:/";
 	}
 
