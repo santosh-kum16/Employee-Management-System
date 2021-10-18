@@ -58,5 +58,13 @@ public class EmpController {
 		session.setAttribute("msg", "Emp Data Update Successfully...");
 		return "redirect:/";
 	}
+	
+	@GetMapping("/delete/{id}")
+	public String deleteEmp(@PathVariable int id, HttpSession session) {
+		
+		service.deleteEmp(id);
+		session.setAttribute("msg","Emp Data Deleted Successfully...");
+		return "redirect:/";
+	}
 
 }
