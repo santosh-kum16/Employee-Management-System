@@ -30,4 +30,9 @@ public class EmpService {
 		}
 		return null;
 	}
+	
+	public void deleteEmp(int id) {
+		
+		repo.deleteById(id);
+	}
 }
